@@ -6,13 +6,17 @@ M.mason = {
     "stylua",
 
     "bash-language-server",
+
+    "clangd",
   },
 }
 
 M.lspconfig = {
   servers = {
     -- "lua_ls", -- added by default by nvchad
-    "bashls"
+    "bashls",
+
+    "clangd",
   }
 }
 
@@ -24,6 +28,9 @@ M.treesitter = {
     "lua",
 
     "bash",
+
+    "c",
+    "cpp",
   },
 }
 
