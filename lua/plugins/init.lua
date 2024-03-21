@@ -10,9 +10,12 @@ return {
   {
     "Pocco81/auto-save.nvim",
     config = function()
+      -- config
       require("auto-save").setup({
         enable = true
       })
+      -- key bindings
+      vim.api.nvim_set_keymap("n", "<leader>as", ":ASToggle<CR>", {})
     end,
     lazy = false
   },

@@ -8,6 +8,8 @@ M.mason = {
     "bash-language-server",
 
     "clangd",
+
+    "typescript-language-server",
   },
 }
 
@@ -17,6 +19,8 @@ M.lspconfig = {
     "bashls",
 
     "clangd",
+
+    "tsserver",
   }
 }
 
@@ -31,6 +35,9 @@ M.treesitter = {
 
     "c",
     "cpp",
+
+    "javascript",
+    "typescript",
   },
 }
 
