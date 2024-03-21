@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre' -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     config = function()
       require "configs.conform"
     end,
@@ -11,28 +11,14 @@ return {
     "Pocco81/auto-save.nvim",
     config = function()
       -- config
-      require("auto-save").setup({
-        enable = true
-      })
+      require("auto-save").setup {
+        enable = true,
+        debounce_delay = 1000, -- saves the file at most every `debounce_delay` milliseconds
+      }
       -- key bindings
       vim.api.nvim_set_keymap("n", "<leader>as", ":ASToggle<CR>", {})
     end,
-    lazy = false
-  },
-
-  {
-    "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
-    opts = {
-      -- Possible configurable fields can be found on:
-      -- https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
-      suggestion = {
-        enable = false,
-      },
-      panel = {
-        enable = false,
-      },
-    },
+    lazy = false,
   },
 
   {
@@ -54,53 +40,29 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       {
+        "zbirenbaum/copilot.lua",
+        event = "InsertEnter",
+        opts = {
+          -- Possible configurable fields can be found on:
+          -- https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
+          suggestion = {
+            enable = false,
+          },
+          panel = {
+            enable = false,
+          },
+        },
+      },
+      {
         "zbirenbaum/copilot-cmp",
         config = function()
           require("copilot_cmp").setup()
         end,
       },
     },
-    opts = {
-      mapping = {
-        ["<up>"] = require("cmp").mapping.select_prev_item({ behavior = require("cmp").SelectBehavior.Select }),
-        ["<down>"] = require("cmp").mapping.select_next_item({ behavior = require("cmp").SelectBehavior.Select }),
-
-        ["<Tab>"] = require("cmp").mapping(function(fallback)
-          local has_words_before = function()
-            if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
-            local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-            return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
-          end
-          if require("cmp").visible() and has_words_before() then
-            local entry = require("cmp").get_selected_entry()
-            if not entry then
-              require("cmp").select_next_item({ behavior = require("cmp").SelectBehavior.Select })
-            end
-            require("cmp").confirm()
-          elseif require("luasnip").expand_or_jumpable() then
-            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-
-        ["<S-Tab>"] = require("cmp").mapping(function(fallback)
-          if require("luasnip").jumpable(-1) then
-            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-      },
-
-      sources = {
-        { name = "copilot" },
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
-      },
-    }
+    opts = function()
+      return require "configs.cmp"
+    end,
   },
 
   {
@@ -110,10 +72,10 @@ return {
         {
           "folke/neodev.nvim",
           config = function()
-            require("neodev").setup({})
+            require("neodev").setup {}
           end,
-        }
-      }
+        },
+      },
     },
     config = function()
       require("nvchad.configs.lspconfig").defaults()
@@ -122,16 +84,16 @@ return {
   },
 
   {
-  	"williamboman/mason.nvim",
-  	opts = {
-      ensure_installed = require("configs.lsp").mason.ensure_installed
-  	},
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = require("configs.lsp").mason.ensure_installed,
+    },
   },
 
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = require("configs.lsp").treesitter.ensure_installed
-  	},
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = require("configs.lsp").treesitter.ensure_installed,
+    },
   },
 }

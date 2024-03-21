@@ -15,7 +15,8 @@ M.mason = {
 
 M.lspconfig = {
   servers = {
-    -- "lua_ls", -- added by default by nvchad
+    "lua_ls",
+
     "bashls",
 
     "clangd",
