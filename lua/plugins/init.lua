@@ -89,25 +89,11 @@ return {
       },
 
       sources = {
-        { name = "nvim_lsp" },
         { name = "copilot" },
+        { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
-      },
-
-      sorting = {
-        priority_weight = 2,
-        comparators = {
-          require("cmp").config.compare.order,
-          require("cmp").config.compare.offset,
-          require("cmp").config.compare.exact,
-          require("cmp").config.compare.score,
-          require("cmp").config.compare.recently_used,
-          require("cmp").config.compare.locality,
-          require("cmp").config.compare.kind,
-          require("cmp").config.compare.length,
-        },
       },
     }
   },
