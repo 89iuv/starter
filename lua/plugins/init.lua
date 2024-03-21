@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre", -- uncomment for format on save
+    -- event = "BufWritePre", -- uncomment for format on save
     config = function()
       require "configs.conform"
     end,
@@ -13,7 +13,6 @@ return {
       -- config
       require("auto-save").setup {
         enable = true,
-        debounce_delay = 1000, -- saves the file at most every `debounce_delay` milliseconds
       }
       -- key bindings
       vim.api.nvim_set_keymap("n", "<leader>as", ":ASToggle<CR>", {})
