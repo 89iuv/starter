@@ -66,7 +66,12 @@ return {
         ["<down>"] = require("cmp").mapping.select_next_item({ behavior = require("cmp").SelectBehavior.Select }),
 
         ["<Tab>"] = require("cmp").mapping(function(fallback)
-          if require("cmp").visible() then
+          local has_words_before = function()
+            if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+            local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+            return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+          end
+          if require("cmp").visible() and has_words_before() then
             local entry = require("cmp").get_selected_entry()
             if not entry then
               require("cmp").select_next_item({ behavior = require("cmp").SelectBehavior.Select })
