@@ -27,10 +27,15 @@ return {
       -- Possible configurable fields can be found on:
       -- https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
       suggestion = {
-        enable = false,
+        enabled = false,
       },
       panel = {
-        enable = false,
+        enabled = true,
+        auto_refresh = true,
+        layout = {
+          position = "right", -- | top | left | right
+          ratio = 0.4,
+        },
       },
     },
   },
