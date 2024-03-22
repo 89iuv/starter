@@ -10,6 +10,7 @@ M.mason = {
     "clangd",
 
     "typescript-language-server",
+    "prettier",
   },
 }
 
@@ -22,7 +23,7 @@ M.lspconfig = {
     "clangd",
 
     "tsserver",
-  }
+  },
 }
 
 M.treesitter = {
@@ -39,6 +40,18 @@ M.treesitter = {
 
     "javascript",
     "typescript",
+  },
+}
+
+M.conform = {
+  formatters_by_ft = {
+    lua = { "stylua" },
+
+    javascript = { "prettier" },
+    typescript = { "prettier" },
+
+    -- css = { "prettier" },
+    -- html = { "prettier" },
   },
 }
 
