@@ -11,6 +11,11 @@ M.ui = {
     style = "flat_light", -- default/flat_light/flat_dark/atom/atom_colored
   },
 
+  lsp = {
+    signature = false,
+    semantic_tokens = false,
+  },
+
   hl_override = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
