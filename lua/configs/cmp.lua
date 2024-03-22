@@ -1,14 +1,10 @@
 local nvchadOpts = require "nvchad.configs.cmp"
 local customOpts = {
-  window = {
-    completion = {
-      scrollbar = true,
-    },
-  },
-
   mapping = {
     ["<up>"] = require("cmp").mapping.select_prev_item { behavior = require("cmp").SelectBehavior.Select },
     ["<down>"] = require("cmp").mapping.select_next_item { behavior = require("cmp").SelectBehavior.Select },
+
+    ["<ESC>"] = require("cmp").mapping.close(),
 
     ["<Tab>"] = require("cmp").mapping(function(fallback)
       local has_words_before = function()
