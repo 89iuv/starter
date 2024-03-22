@@ -1,13 +1,5 @@
 return {
   {
-    "stevearc/conform.nvim",
-    -- event = "BufWritePre", -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
-  },
-
-  {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     opts = function()
@@ -26,23 +18,9 @@ return {
   },
 
   {
-    "Pocco81/auto-save.nvim",
-    config = function()
-      -- config
-      require("auto-save").setup {
-        enable = true,
-      }
-      -- key bindings
-      vim.api.nvim_set_keymap("n", "<leader>as", ":ASToggle<CR>", {})
-    end,
-    lazy = false,
-  },
-
-  {
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
@@ -61,7 +39,6 @@ return {
           ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
         },
       },
-      -- you can enable a preset for easier configuration
       presets = {
         bottom_search = false, -- use a classic bottom cmdline for search
         command_palette = false, -- position the cmdline and popupmenu together
@@ -79,6 +56,19 @@ return {
         enabled = false,
       },
     },
+  },
+
+  {
+    "Pocco81/auto-save.nvim",
+    config = function()
+      -- config
+      require("auto-save").setup {
+        enable = true,
+      }
+      -- key bindings
+      vim.api.nvim_set_keymap("n", "<leader>as", ":ASToggle<CR>", {})
+    end,
+    lazy = false,
   },
 
   {
@@ -160,5 +150,13 @@ return {
     opts = {
       ensure_installed = require("configs.lsp").treesitter.ensure_installed,
     },
+  },
+
+  {
+    "stevearc/conform.nvim",
+    -- event = "BufWritePre", -- uncomment for format on save
+    config = function()
+      require "configs.conform"
+    end,
   },
 }
