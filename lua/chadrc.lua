@@ -16,6 +16,11 @@ M.ui = {
     semantic_tokens = false,
   },
 
+  tabufline = {
+    lazyload = false,
+    order = { "treeOffset", "buffers", "tabs" },
+  },
+
   hl_override = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
