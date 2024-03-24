@@ -14,12 +14,23 @@ map(
   { desc = "Format Files" }
 )
 
-map("n", "<C-.>", function()
+-- Unmap keys
+map("n", "<Tab>", "<C-i>")
+map("n", "<S-tab>", "<Nop>")
+
+map("t", "<ESC>", "<Nop>")
+
+-- Switch tabs
+map("n", "<M-}>", function()
   require("nvchad.tabufline").next()
 end, { desc = "Buffer Goto next" })
 
-map("n", "<C-,>", function()
+map("n", "<M-{>", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Buffer Goto prev" })
+
+-- Back and forward
+map("n", "<M-]>", "<C-i>")
+map("n", "<M-[>", "<C-o>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
