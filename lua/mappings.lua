@@ -33,4 +33,6 @@ end, { desc = "Buffer Goto prev" })
 map("n", "<M-]>", "<C-i>")
 map("n", "<M-[>", "<C-o>")
 
+
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
