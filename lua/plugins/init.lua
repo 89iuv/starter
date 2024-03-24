@@ -2,19 +2,11 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = function()
-      local nvchadOpts = require "nvchad.configs.nvimtree"
-      local customOpts = {
-        renderer = {
-          root_folder_label = ":~:s?$?/..?",
-        },
-      }
-      return vim.tbl_deep_extend("force", nvchadOpts, customOpts)
-    end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "nvimtree")
-      require("nvim-tree").setup(opts)
-    end,
+    opts = {
+      renderer = {
+        root_folder_label = ":~:s?$?/..?",
+      },
+    },
   },
 
   {
@@ -25,7 +17,7 @@ return {
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
+      -- "rcarriga/nvim-notify",
     },
     opts = {
       lsp = {
@@ -40,11 +32,11 @@ return {
         },
       },
       presets = {
-        bottom_search = false, -- use a classic bottom cmdline for search
-        command_palette = false, -- position the cmdline and popupmenu together
-        long_message_to_split = false, -- long messages will be sent to a split
-        inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
+        bottom_search = false,         -- use a classic bottom cmdline for search
+        command_palette = true,       -- position the cmdline and popupmenu together
+        long_message_to_split = true, -- long messages will be sent to a split
+        inc_rename = false,            -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = false,        -- add a border to hover docs and signature help
       },
       cmdline = {
         enabled = false,
@@ -72,6 +64,15 @@ return {
       vim.api.nvim_set_keymap("n", "<leader>as", ":ASToggle<CR>", {})
     end,
     lazy = false,
+  },
+
+  -- git stuff
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "User FilePost",
+    opts = {
+      sign_priority = 100,
+    },
   },
 
   {
@@ -135,7 +136,7 @@ return {
         },
       },
     },
-    config = function()
+    opts = function()
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
@@ -158,8 +159,6 @@ return {
   {
     "stevearc/conform.nvim",
     -- event = "BufWritePre", -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
+    opts = require "configs.conform"
   },
 }
