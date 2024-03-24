@@ -14,4 +14,12 @@ map(
   { desc = "Format Files" }
 )
 
+map("n", "<C-.>", function()
+  require("nvchad.tabufline").next()
+end, { desc = "Buffer Goto next" })
+
+map("n", "<C-,>", function()
+  require("nvchad.tabufline").prev()
+end, { desc = "Buffer Goto prev" })
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
