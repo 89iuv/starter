@@ -4,7 +4,7 @@ M.ui = {
   theme = "catppuccin",
 
   statusline = {
-    separator_style = "block",
+    separator_style = "default",
   },
 
   cmp = {

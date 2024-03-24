@@ -55,6 +55,9 @@ return {
       popupmenu = {
         enabled = false,
       },
+      notify = {
+        enabled = false,
+      },
     },
   },
 

@@ -6,6 +6,8 @@ M.mason = {
     "stylua",
 
     "bash-language-server",
+    "shfmt",
+    "shellcheck";
 
     "clangd",
 
@@ -46,6 +48,8 @@ M.treesitter = {
 M.conform = {
   formatters_by_ft = {
     lua = { "stylua" },
+
+    sh = { "shfmt", "shellcheck" },
 
     javascript = { "prettier" },
     typescript = { "prettier" },
