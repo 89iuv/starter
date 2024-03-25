@@ -144,6 +144,17 @@ return {
           end)
           return "<Ignore>"
         end, { expr = true })
+
+        -- nvchad config
+        local function opts(desc)
+          return { buffer = bufnr, desc = desc }
+        end
+
+        local nvMap = vim.keymap.set
+
+        nvMap("n", "<leader>rh", gs.reset_hunk, opts "Reset Hunk")
+        nvMap("n", "<leader>ph", gs.preview_hunk, opts "Preview Hunk")
+        nvMap("n", "<leader>gb", gs.blame_line, opts "Blame Line")
       end,
     },
   },
