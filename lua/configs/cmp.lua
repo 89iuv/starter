@@ -4,7 +4,7 @@ local customOpts = {
     ["<up>"] = require("cmp").mapping.select_prev_item { behavior = require("cmp").SelectBehavior.Select },
     ["<down>"] = require("cmp").mapping.select_next_item { behavior = require("cmp").SelectBehavior.Select },
 
-    ["<ESC>"] = require("cmp").mapping.close(),
+    ["<CR>"] = require("cmp").config.disable,
 
     ["<Tab>"] = require("cmp").mapping(function(fallback)
       local has_words_before = function()
